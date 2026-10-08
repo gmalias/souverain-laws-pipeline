@@ -1,0 +1,19 @@
+{
+  "name": "souverain-laws-pipeline",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "souverain-laws reposu için web kazıma pipeline'ı: resmi kaynaklardan madde metinlerini çeker, doğrular, GitHub'a push eder",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "crawl": "node src/main.js crawl",
+    "crawl:dry": "node src/main.js crawl --dry-run",
+    "check": "node src/main.js check"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "playwright": "^1.49.0"
+  }
+}

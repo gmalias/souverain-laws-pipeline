@@ -1,0 +1,12 @@
+services:
+  pipeline:
+    build: .
+    image: gmalias/souverain-laws-pipeline:latest
+    env_file: .env
+    environment:
+      TZ: Europe/Istanbul
+    # Tekrarlayan çalıştırma için bir konteyner tanımlı tutmak istenirse
+    # cron buraya taşınır: "0 3 * * 7" (Pazartesi 03:00)
+    command: ["node", "src/main.js", "crawl"]
+    # cron yerine "service: always" + iç timer da seçilebilir;
+    # planlanan kurulum: host cron/systemd haftalık `docker compose run --rm pipeline`
