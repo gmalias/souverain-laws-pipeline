@@ -34,6 +34,9 @@
 //  - legifrance: Akamai bot koruması (düz HTTP 403) → Playwright gerekir.
 //    URL'ler "page" formatında (sayfa içi arama + madde linki) çünkü Legifrance'ın
 //    kalıcı makale URL'leri (LegiArti ID'leri) düzenli olarak değişir.
+//    2026.10.08: duvar Cloudflare Turnstile (eski nottaki "Akamai" yanlıştı);
+//    TR IP'den tüm kanallar (curl/Playwright headless+headful/jina/wayback SPN)
+//    challenge'da kalır. AB IP'de (MQ70) geçerse resmi metin otomatik devreye girer.
 
 export const MANIFEST = [
 	{
@@ -84,7 +87,8 @@ export const MANIFEST = [
 		url: 'https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006073089/2024-01-01',
 		searchInPage: 'R. 731-21',
 		expectContent: 'r\u00e9fugi\u00e9',
-		sourceNote: 'Légifrance (Fransa Adalet Bakanlığı resmî kod)',
+		sourceNote:
+			'Légifrance (Fransa Adalet Bakanlığı resmî kod); 2026.10.08: Cloudflare duvari → fallback (elle derlenmiş; kaynakta doğrula)',
 		fallbackContent:
 			"L'Office français de l'asile et du droit d'asile (OFPRA) confère la qualité de réfugié au demandeur se réclamant persécuté au sens de l'article 1er, point A, de la Convention de Genève du 28 septembre 1951, relative au statut des réfugiés, en raison de sa race, de sa religion, de ses opinions politiques, de sa nationalité ou de son appartenance à un certain groupe social.",
 	},
@@ -122,7 +126,8 @@ export const MANIFEST = [
 		url: 'https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006072050/2024-01-01',
 		searchInPage: 'L. 123-7',
 		expectContent: 'compt',
-		sourceNote: 'Légifrance (Fransa Adalet Bakanlığı resmî kod)',
+		sourceNote:
+			'Légifrance (Fransa Adalet Bakanlığı resmî kod); 2026.10.08: Cloudflare duvari → fallback (elle derlenmiş; kaynakta doğrula)',
 		fallbackContent:
 			"Le commerçant doit tenir une comptabilité régulière qui comporte les recettes, dépenses et engagements de l'activité. Cette comptabilité doit permettre de déterminer, sans recourir à des reconstitutions, le chiffre des recettes, la valeur des stocks et l'état de fortune du débiteur. Les pièces justificatives doivent être conservées pendant au moins dix ans à compter de la date à laquelle elles ont été émises ou établies.",
 	},

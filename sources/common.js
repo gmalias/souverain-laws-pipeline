@@ -44,10 +44,17 @@ export async function fetchText(url, { retries = 3, timeoutMs = 30000, ua = UA }
 
 let _pw;
 /**
- * Lazy Playwright başlat (tek chromium örneği).
+ * Lazy Playwright başlat (tek chromium örneği; ölürse yeniden doğar).
  * Makinede tarayıcı yoksa `npx playwright install chromium` gerekir.
  */
 export async function getBrowser() {
+	// 2026.10.08 düzeltmesi: cache'li örnek ÖLÜMSE (çökme/Target closed) sıfırla.
+	// Önceki sürüm ölü browser'ı sonsuza dek yeniden kullanıyordu; retry'lar
+	// hep aynı ölü örnek üstüne gidip "browser.newPage: Target closed" diyordu.
+	if (_pw && !_pw.isConnected()) {
+		await _pw.close().catch(() => {});
+		_pw = null;
+	}
 	if (!_pw) {
 		let pw;
 		try {
@@ -62,7 +69,12 @@ export async function getBrowser() {
 				_pw = await pw.chromium.launch({
 					headless: true,
 					channel: name === 'chromium' ? undefined : name,
-					args: ['--no-sandbox', '--disable-dev-shm-usage'],
+					args: [
+						'--no-sandbox',
+						'--disable-dev-shm-usage',
+						// Cloudflare Turnstile `navigator.webdriver` vektörünü maskele
+						'--disable-blink-features=AutomationControlled',
+					],
 				});
 				return _pw;
 			} catch (e) {
@@ -79,9 +91,14 @@ export async function getBrowser() {
 
 /**
  * Legifrance gibi JS/bot korumalı sayfaları gerçek tarayıcıyla alır.
- * @returns {{ok:boolean, html?:string, error?:string}}
+ *
+ * Cloudflare Turnstile (2026.10.08 itibarıyla legifrance.gouv.fr'nin koruması):
+ * challenge sayfası ("Un instant…" / "Just a moment…") gelirse, otomatik çözülecek
+ * kadar bekler; çözülmüyorsa NET HATA döner (main, manifest fallback'ine düşer).
+ *
+ * @returns {Promise<{ok:boolean, html?:string, error?:string}>}
  */
-export async function browserFetch(url, { timeoutMs = 45000 } = {}) {
+export async function browserFetch(url, { timeoutMs = 45000, challengeWaitMs = 20000 } = {}) {
 	try {
 		const browser = await getBrowser();
 		const page = await browser.newPage({
@@ -90,9 +107,27 @@ export async function browserFetch(url, { timeoutMs = 45000 } = {}) {
 			extraHTTPHeaders: { 'Accept-Language': 'fr-FR,fr;q=0.9' },
 		});
 		try {
+			// Turnstile, `navigator.webdriver` vektörünü denetler — maskele
+			await page.addInitScript(() => {
+				Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+			});
 			await page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
-			await page.waitForTimeout(1200); // JS render için
-			return { ok: true, html: await page.content() };
+			// Challenge otomatik çözülene (gerçek tarayıcı + temiz IP'de mümkün) kadar bekle
+			const t0 = Date.now();
+			for (;;) {
+				await page.waitForTimeout(1500);
+				const title = await page.title().catch(() => '');
+				if (!/un instant|just a moment|bir an/i.test(title)) break;
+				if (Date.now() - t0 > challengeWaitMs) break;
+			}
+			const html = await page.content();
+			if (
+				/cdn-cgi\/challenge-platform|challenges\.cloudflare\.com|cf-chl/i.test(html) ||
+				/Un instant|Just a Moment/i.test(html)
+			) {
+				return { ok: false, error: `bot duvari: Cloudflare challenge sayfası dönüyor ${url}` };
+			}
+			return { ok: true, html };
 		} finally {
 			await page.close();
 		}

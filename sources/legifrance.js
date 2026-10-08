@@ -1,16 +1,18 @@
 // sources/legifrance.js
-// Légifrance — Fransa Adalet Bakanlığı resmî kodlar. Akamai bot koruması nedeniyle
-// gerçek tarayıcı (Playwright) gerekir.
+// Légifrance — Fransa Adalet Bakanlığı resmî kodlar.
+//
+// 2026.10.08 durumu: alan adı Cloudflare (Turnstile challenge) arkasında.
+// Duvar IP itibarına göre davranır: TR'dan tüm kanallar 403/challenge; AB'dan
+// (MQ70) gerçek tarayıcı geçebilir. Kaynak modülü HATA FIRLATIR; main,
+// manifestteki fallbackContent'a düşer.
 //
 // Strateji:
-//   1) liste sayfasını (texte_lc) tarayıcıda aç
-//   2) sayfada searchInPage ("R. 731-21") yazan ilk linke tıkla
+//   1) liste sayfasını (texte_lc) tarayıcıda aç (challenge bekleme + 2 deneme)
+//   2) sayfada searchInPage ("R. 731-21") yazan ilk linki ikinci navigasyonla aç
 //   3) madde sayfasında içerik bloğunu seç (kandit seçiciler + expectContent skoru)
 //
 // Legifrance DOM'u sürüm sürüm değiştiği için seçiciler BIR KAÇ aday içerir;
 // içerik "hangi blokta expectContent var ve en kısa o" heuristiğiyle seçilir.
-// Erişilemezlikte kaynak modülü HATA FIRLATIR; main, manifestte fallbackContent
-// varsa ona düşer, yoksa pipeline durur (push engellenir).
 
 import * as $ from 'cheerio';
 import { browserFetch, sleep } from './common.js';
@@ -30,17 +32,29 @@ function clean(s) {
 }
 
 /**
+ * Challenge/403 geçici olabildiği için 2 deneme + 5 sn backoff.
+ * İkinci denemede de başarısızsa net hata fırlatılır (main fallback'e düşer).
+ */
+async function browserFetchRetry(url) {
+	let res = await browserFetch(url);
+	if (!res.ok) {
+		await sleep(5000);
+		const again = await browserFetch(url);
+		if (again.ok) return again;
+		throw new Error(`legifrance: tarayıcı erişimi başarısız: ${again.error} ${url}`);
+	}
+	return res;
+}
+
+/**
  * @param {{url:string, searchInPage?:string, expectContent?:string, sectionLabel?:string}} t
  * @returns {Promise<{sectionLabel:string, title:string, content:string, url:string}>}
  */
 export async function fetchLegifrance({ url, searchInPage, expectContent, sectionLabel }) {
-	const res = await browserFetch(url);
-	if (!res.ok) throw new Error(`legifrance: tarayıcı erişimi başarısız: ${res.error}`);
+	const res = await browserFetchRetry(url);
 	let root = $.load(res.html);
 
-	// 2) sayfa içi madde linkini bul + tıkla (playwright DOM'u üzerinde)
-	//    -- burada sayfa DOM'u cheerio içinde olduğu için linki "href" olarak çekip
-	//       ikinci bir browserFetch ile açıyoruz (tıklama yerine navigasyon).
+	// 2) sayfa içi madde linkini bul; href'i çekip ikinci navigasyonla aç
 	let articleHtml = res.html;
 	let articleUrl = url;
 	if (searchInPage) {
@@ -51,8 +65,7 @@ export async function fetchLegifrance({ url, searchInPage, expectContent, sectio
 		if (link) {
 			const abs = new URL(link, url).href;
 			articleUrl = abs;
-			const r2 = await browserFetch(abs);
-			if (!r2.ok) throw new Error(`legifrance: madde sayfası başarısız: ${r2.error}`);
+			const r2 = await browserFetchRetry(abs);
 			articleHtml = r2.html;
 			root = $.load(articleHtml);
 			await sleep(1500);
@@ -89,7 +102,7 @@ export async function fetchLegifrance({ url, searchInPage, expectContent, sectio
 			(sectionLabel ? `${sectionLabel}` : 'Article'),
 	);
 	const label =
-		(clean(root('h1').first().text()).match(/(?:^|\s)((?:L|R|art\.?)\.?\s?\d[\w.\-]*)/i)?.[1] ||
+		(clean(root('h1').first().text()).match(/(?:^|\s)((?:L|R|art\.?)\.\s?\d[\w.\-]*)/i)?.[1] ||
 			sectionLabel) ??
 		'';
 
