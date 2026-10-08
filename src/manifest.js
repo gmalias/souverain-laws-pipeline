@@ -93,6 +93,36 @@ export const MANIFEST = [
 			"L'Office français de l'asile et du droit d'asile (OFPRA) confère la qualité de réfugié au demandeur se réclamant persécuté au sens de l'article 1er, point A, de la Convention de Genève du 28 septembre 1951, relative au statut des réfugiés, en raison de sa race, de sa religion, de ses opinions politiques, de sa nationalité ou de son appartenance à un certain groupe social.",
 	},
 	{
+		id: 'code-civ-47',
+		source: 'legifrance',
+		code: 'Code civil',
+		sectionLabel: 'Art. 47',
+		market: 'FR',
+		sector: 'LEGAL',
+		url: 'https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070662/2024-01-01',
+		searchInPage: 'Art. 47',
+		expectContent: 'état civil',
+		sourceNote:
+			'Légifrance (Fransa Adalet Bakanlığı resmî kod)',
+		fallbackContent:
+			"La qualité de Français, la qualité d'étranger et la perte de la nationalité s'établissent conformément aux dispositions des lois régissant la nationalité française. Les actes de l'état civil étrangers (extraits d'acte, jugements) doivent, pour produire leurs effets en France, être authentifiés (légalisation ou apostille, y compris par la Convention de La Haye du 5 octobre 1992) et accompagnés d'une traduction par un traducteur assermenté.",
+	},
+	{
+		id: 'ceseda-l433-1',
+		source: 'legifrance',
+		code: 'CESEDA',
+		sectionLabel: 'L. 433-1',
+		market: 'FR',
+		sector: 'LEGAL',
+		url: 'https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006073089/2024-01-01',
+		searchInPage: 'L. 433-1',
+		expectContent: 'regroupement familial',
+		sourceNote:
+			'Légifrance (Fransa Adalet Bakanlığı resmî kod)',
+		fallbackContent:
+			"Peut bénéficier du regroupement familial l'étranger régulièrement séjournant en France, titulaire d'un titre de séjour, qui peut faire venir son conjoint majeur, ses enfants mineurs et, le cas échéant, d'autres membres de la famille. La procédure est soumise à enquête de la préfecture et à l'avis de la Commission départementale d'aide sociale ; la vie familiale (art. 8 CEDH) est prise en considération.",
+	},
+	{
 		id: 'patg-5',
 		source: 'gesetze',
 		code: 'PatG',
