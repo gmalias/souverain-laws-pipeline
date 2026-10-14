@@ -52,6 +52,12 @@ export function validate(draft, manifest) {
 		}
 		if (!MARKETS.has(l.market)) errors.push(`${l.id}: geçersiz market "${l.market}"`);
 		if (!SECTORS.has(l.sector)) errors.push(`${l.id}: geçersiz sector "${l.sector}"`);
+		if (l.topics !== undefined && (!Array.isArray(l.topics) || l.topics.some((topic) => typeof topic !== 'string' || !topic.trim()))) {
+			errors.push(`${l.id}: topics dizisi geçersiz`);
+		}
+		if (l.priority !== undefined && !Number.isFinite(l.priority)) {
+			errors.push(`${l.id}: priority sayısal olmalı`);
+		}
 		// 5) içerik uzunluk penceresi
 		const n = (l.content || '').length;
 		if (n < 60) errors.push(`${l.id}: içerik şüpheli kısa (${n} ç)`);

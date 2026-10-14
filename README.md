@@ -11,10 +11,13 @@
    |-------|--------|
    | StGB § 203, AsylG § 3, PatG § 5, HGB § 242 | `gesetze-im-internet.de` (BMJ/BSt) |
    | GDPR Art. 5 (Almanca) | `dsgvo-gesetz.de` (EUR-Lex bot duvarı için) |
-   | CESEDA R. 731-21, Code de commerce L. 123-7 | `legifrance.gouv.fr` (Playwright) |
+   | CESEDA R. 731-21, CESEDA OQTF L. 611-1 / L. 612-1 à L. 612-3 | `legifrance.gouv.fr` (Playwright) |
+   | Code de la sécurité intérieure L. 611-1, L. 612-1, L. 612-20, L. 632-1 (CNAPS) | `legifrance.gouv.fr` (Playwright) |
 
 > **Not (2026.10.08):** Legifrance in Cloudflare (Turnstile) bot duvari arkasinda; duvar IP itibarina gore davranir. TR IP'den 12 kanal denendi (curl, Playwright headless+headful, jina reader, Wayback SPN, data.gouv, api alt-domaini...) — tumu challenge'da. FR maddeleri kaynakta erisilemezse manifestteki elle hazirlanmis fallback ile korunur; MQ70 (AB IP) duvari asarsa FR metinleri otomatik olarak resmi metinlere gecer.
 2. Normalize eder (saha + 2200 char üst sınır/madde).
+   OQTF/CNAPS için `topics` ve `priority` alanlarını da korur; uygulama konuya
+   uygun sorgularda ilgili maddeleri vektör sonuçlarının önüne alır.
 3. `check/validate.js` kapısı: sürüm formatı, id kümesi, alan sözlükleri, drift ipuçları — **başarısız → push BLOKE**.
 4. Değişiklik varsa `souverain-laws/laws.json`'u git ile commit + push (sürüm = bugünün tarihi `YYYY.MM.DD`).
 

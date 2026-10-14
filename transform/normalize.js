@@ -28,6 +28,8 @@ export function normalizeLaw(entry, scraped, usedFallback = false) {
 		title: scraped.title || entry.sectionLabel,
 		market: entry.market,
 		sector: entry.sector,
+		...(entry.topics ? { topics: entry.topics } : {}),
+		...(Number.isFinite(entry.priority) ? { priority: entry.priority } : {}),
 		content: capText(scraped.content),
 		source: usedFallback ? `derlenmiş özet referans (kaynak erişilemedi; ${entry.sourceNote || ''})`.trim() : entry.sourceNote || '',
 		fullTextUrl: scraped.url,
