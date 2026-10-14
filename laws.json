@@ -1,0 +1,190 @@
+{
+  "version": "2026.10.14",
+  "laws": [
+    {
+      "id": "stgb-203",
+      "code": "StGB",
+      "section": "§ 203",
+      "title": "Verletzung von Geheimnissen (Berufsgeheimnis)",
+      "market": "DE",
+      "sector": "both",
+      "content": "Wer ein ihm in seiner Eigenschaft als Rechtsanwalt, Steuerberater, Notar, Arzt oder Pflegeperson anvertrautes oder sonst bekannt gewordenes Geheimnis offenbart oder missbraucht, wird mit Freiheitsstrafe bis zu fünf Jahren oder mit Geldstrafe bestraft."
+    },
+    {
+      "id": "asylg-51",
+      "code": "AsylG",
+      "section": "§ 51",
+      "title": "Asylberechtigung",
+      "market": "DE",
+      "sector": "LEGAL",
+      "content": "Asylberechtigt ist ein Ausländer, der in Deutschland verfolgt wird oder ernsthaft zu fürchten hat, in seinem Herkunftsland verfolgt zu werden, sofern er nicht in einen sicheren Drittstaat einreisen konnte (u. a. wegen Bedrohung von Leib oder Leben wegen seiner Rasse, Religion, Nationalität, politischen Überzeugung oder sexuellen Orientierung)."
+    },
+    {
+      "id": "dsGvo-5",
+      "code": "DSGVO",
+      "section": "Art. 5",
+      "title": "Grundsätze für die Verarbeitung personenbezogener Daten",
+      "market": "both",
+      "sector": "both",
+      "content": "Die Verarbeitung personenbezogener Daten muss rechtmäßig, fair und transparent erfolgen; sie darf nur zu bestimmten, klar definierten und rechtmäßigen Zwecken geschehen (Zweckbindung) und datensparsam sowie auf den erforderlichen Umfang beschränkt sein. Integrität und Vertraulichkeit sind durch geeignete technische und organisatorische Maßnahmen zu gewährleisten."
+    },
+    {
+      "id": "ceseda-r731-21",
+      "code": "CESEDA",
+      "section": "R. 731-21",
+      "title": "Attribution de la qualité de réfugié par l'OFPRA",
+      "market": "FR",
+      "sector": "LEGAL",
+      "content": "L'Office français de l'asile et du droit d'asile (OFPRA) confère la qualité de réfugié au demandeur se réclamant persécuté au sens de l'article 1er, point A, de la Convention de Genève du 28 septembre 1951, relative au statut des réfugiés, en raison de sa race, de sa religion, de ses opinions politiques, de sa nationalité ou de son appartenance à un certain groupe social."
+    },
+    {
+      "id": "code-civ-47",
+      "code": "Code civil",
+      "section": "Art. 47",
+      "title": "Établissement de la qualité d'étranger — actes de l'état civil étrangers",
+      "market": "FR",
+      "sector": "LEGAL",
+      "content": "La qualité de Français, la qualité d'étranger et la perte de la nationalité s'établissent conformément aux dispositions des lois régissant la nationalité française. Les actes de l'état civil étrangers (extraits d'acte, jugements) doivent, pour produire leurs effets en France, être authentifiés (légalisation ou apostille, y compris par la Convention de La Haye du 5 octobre 1992) et accompagnés d'une traduction par un traducteur assermenté."
+    },
+    {
+      "id": "ceseda-l433-1",
+      "code": "CESEDA",
+      "section": "L. 433-1",
+      "title": "Regroupement familial",
+      "market": "FR",
+      "sector": "LEGAL",
+      "content": "Peut bénéficier du regroupement familial l'étranger régulièrement séjournant en France, titulaire d'un titre de séjour, qui peut faire venir son conjoint majeur, ses enfants mineurs et, le cas échéant, d'autres membres de la famille. La procédure est soumise à enquête de la préfecture et à l'avis de la Commission départementale d'aide sociale ; la vie familiale (art. 8 CEDH) est prise en considération."
+    },
+    {
+      "id": "patg-5",
+      "code": "PatG",
+      "section": "§ 5 Abs. 1",
+      "title": "Erfindungsfähigkeit",
+      "market": "DE",
+      "sector": "PATENT",
+      "content": "Eine Erfindung ist erfinderisch, wenn sie dem Fachmann nicht ohne erfinderische Tätigkeit aus dem Stand der Technik hervorgeht. Die Erfindungsfähigkeit ist nur für den technischen Gesamtgehalt der Erfindung und nicht für einzelne Merkmale in ihrer Isolation zu beurteilen."
+    },
+    {
+      "id": "hgb-242",
+      "code": "HGB",
+      "section": "§ 242",
+      "title": "Bilanz (Erstellung und Abschluss des Geschäftsjahres)",
+      "market": "DE",
+      "sector": "ACCOUNTING",
+      "content": "Die Bilanz ist nach dem Geschäftsjahr zu erstellen; sie enthält die Darstellung des Vermögens des Unternehmens zum Abschlussstichtag sowie die Aufstellung der Schulden und des Eigenkapitals (Bilanzsumme). Für die ordnungsmäßige Aufstellung des Jahresabschlusses, also von Bilanz und Gewinn- und Verlustrechnung in Übereinstimmung mit der kaufmännischen Buchführung (GoBD), ist die Geschäftsführung verantwortlich."
+    },
+    {
+      "id": "code-comm-l123-7",
+      "code": "Code de commerce",
+      "section": "L. 123-7",
+      "title": "Conservation des pièces comptables",
+      "market": "FR",
+      "sector": "ACCOUNTING",
+      "content": "Le commerçant doit tenir une comptabilité régulière qui comporte les recettes, dépenses et engagements de l'activité. Cette comptabilité doit permettre de déterminer, sans recourir à des reconstitutions, le chiffre des recettes, la valeur des stocks et l'état de fortune du débiteur. Les pièces justificatives doivent être conservées pendant au moins dix ans à compter de la date à laquelle elles ont été émises ou établies."
+    },
+    {
+      "id": "ceseda-l611-1",
+      "code": "CESEDA",
+      "section": "L. 611-1",
+      "title": "Cas de prononcé d'une obligation de quitter le territoire français",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "OQTF"
+      ],
+      "priority": 100,
+      "content": "L'article L. 611-1 énumère les situations dans lesquelles l'autorité administrative peut obliger un étranger à quitter le territoire français, notamment en cas de séjour irrégulier ou de perte du droit au séjour. Le fondement exact dépend de la situation individuelle et doit être vérifié dans la version en vigueur du CESEDA."
+    },
+    {
+      "id": "ceseda-l612-1",
+      "code": "CESEDA",
+      "section": "L. 612-1",
+      "title": "Délai de départ volontaire",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "OQTF"
+      ],
+      "priority": 90,
+      "content": "Lorsqu'une obligation de quitter le territoire français est prononcée, l'article L. 612-1 prévoit en principe un délai de départ volontaire de trente jours, sous réserve des exceptions prévues par le CESEDA. La décision et les circonstances du dossier déterminent les modalités applicables."
+    },
+    {
+      "id": "ceseda-l612-2",
+      "code": "CESEDA",
+      "section": "L. 612-2",
+      "title": "Refus du délai de départ volontaire",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "OQTF"
+      ],
+      "priority": 95,
+      "content": "L'article L. 612-2 prévoit les cas dans lesquels l'autorité administrative peut refuser le délai de départ volontaire, notamment en présence d'un risque de soustraction à l'obligation de quitter le territoire ou d'une menace pour l'ordre public. Les conditions légales doivent être contrôlées au regard du texte en vigueur."
+    },
+    {
+      "id": "ceseda-l612-3",
+      "code": "CESEDA",
+      "section": "L. 612-3",
+      "title": "Risque de soustraction à l'obligation de quitter le territoire",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "OQTF"
+      ],
+      "priority": 85,
+      "content": "L'article L. 612-3 précise les circonstances permettant d'apprécier le risque que l'étranger se soustraie à l'obligation de quitter le territoire français. L'appréciation porte sur les éléments prévus par le texte et les faits propres au dossier; le risque ne se déduit pas automatiquement de la seule mesure d'éloignement."
+    },
+    {
+      "id": "csi-l611-1",
+      "code": "Code de la sécurité intérieure",
+      "section": "L. 611-1",
+      "title": "Activités privées de sécurité concernées",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "CNAPS"
+      ],
+      "priority": 80,
+      "content": "L'article L. 611-1 définit les activités privées de sécurité relevant du livre VI du Code de la sécurité intérieure. Il délimite le champ des activités de surveillance et de gardiennage, de transport de fonds et de protection physique des personnes auxquelles s'appliquent les règles professionnelles et les contrôles du CNAPS."
+    },
+    {
+      "id": "csi-l612-1",
+      "code": "Code de la sécurité intérieure",
+      "section": "L. 612-1",
+      "title": "Autorisation préalable d'exercice",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "CNAPS"
+      ],
+      "priority": 85,
+      "content": "L'article L. 612-1 soumet l'exercice des activités privées de sécurité concernées à une autorisation administrative préalable. L'autorisation porte sur l'entreprise et les établissements dans les conditions fixées par le Code de la sécurité intérieure; elle est distincte de la carte professionnelle individuelle."
+    },
+    {
+      "id": "csi-l612-20",
+      "code": "Code de la sécurité intérieure",
+      "section": "L. 612-20",
+      "title": "Conditions de la carte professionnelle",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "CNAPS"
+      ],
+      "priority": 95,
+      "content": "L'article L. 612-20 encadre la carte professionnelle requise pour exercer comme agent de sécurité privée, notamment les conditions tenant à la nationalité ou au droit au séjour, à l'aptitude professionnelle et à l'absence de condamnations incompatibles. Les critères et exceptions doivent être vérifiés dans le texte en vigueur."
+    },
+    {
+      "id": "csi-l632-1",
+      "code": "Code de la sécurité intérieure",
+      "section": "L. 632-1",
+      "title": "Institution du CNAPS",
+      "market": "FR",
+      "sector": "LEGAL",
+      "topics": [
+        "CNAPS"
+      ],
+      "priority": 100,
+      "content": "L'article L. 632-1 institue le Conseil national des activités privées de sécurité (CNAPS) comme établissement public administratif placé sous la tutelle du ministre de l'intérieur. Son statut et ses compétences s'inscrivent dans le dispositif de police administrative des activités privées de sécurité."
+    }
+  ]
+}
